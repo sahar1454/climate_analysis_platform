@@ -41,9 +41,6 @@ def process_climate_data(
 
     df_cities_sub.show(10)
 
-    df_cities_sub.select('city').distinct().repartition(1).write.mode("overwrite").option(
-        "header", "true").csv("tmp/canada_cities")
-
     join_condition = [((round(df_climate_sub.longtitude, 1) == round(df_cities_sub.longtitude, 1)) | ((round(df_climate_sub.longtitude, 1) + 0.1) == round(df_cities_sub.longtitude, 1)) | (round(df_climate_sub.longtitude, 1) == (round(df_cities_sub.longtitude, 1) + 0.1))),
                       ((round(df_climate_sub.latitude, 1) == round(df_cities_sub.latitude, 1)) | ((round(df_climate_sub.latitude, 1) + 0.1) == round(df_cities_sub.latitude, 1)) | (round(df_climate_sub.latitude, 1) == (round(df_cities_sub.latitude, 1) + 0.1)))]
 
