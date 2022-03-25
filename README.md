@@ -43,7 +43,7 @@ It includes two tables/file structures:
 - canada.csv (can be called canada_climate_stats if it was a table): it includes `date`, `mean`, `median` columns (would be better to rename mean and median to mean_temperature and median_temperature to be more descriptive)
 - cities.csv (can be called urban_cities_climate_stats if it was a table:): it includs `date`, `city`, `mean`, `median` columns (would be better to rename mean and median to mean_temperature and median_temperature to be more descriptive)
 
-![alt text](images/data_model.png)
+![alt text](https://github.com/sahar1364/climate_analysis_platform/tree/master/images/emr.jpg?raw=true)
 
 #### Important Files In This Project
 **etl/etl.py:** Fetches and transforms data from cvs files and inserts them into two final csv file in `data/results/canada_climate_stats` directory
