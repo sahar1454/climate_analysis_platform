@@ -15,4 +15,4 @@ chmod +x miniconda.sh
 ./miniconda.sh -b -p venv
 
 # activate the conda python virtual environment
-source venv/bin/activate ""
+source venv/bin/activate
