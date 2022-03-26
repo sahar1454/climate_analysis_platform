@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Weather Insights</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="jquery-3.6.0.min.js"></script>
+  <script src="weather.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Weather Insights</h1>
+    <div class="select_container">
+      <label class="select_label">DATE</label>
+      <input type="date" id="weather_date" value="2021-01-01" min="2021-01-01" max="2021-02-28">
+    </div>
+    <div class="select_container">
+      <label class="select_label">COUNTRY</label>
+      <select id="countries">
+        <option value="canada">Canada</option>
+      </select>
+    </div>
+    <div class="result_container" id="country_details"></div>
+    <div class="select_container" id="city_container">
+      <label class="select_label">CITY</label>
+      <select id="cities"></select>
+    </div>
+    <div class="result_container" id="city_details"></div>
+    <script>initialize();</script>
+</body>
+</html>

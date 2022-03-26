@@ -1,8 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/stats/canada/{date}")
 async def root(date: str):
@@ -27,5 +37,5 @@ async def root(city: str, date: str):
 
 @app.get("/cities")
 async def root():
-    df = pd.read_csv('../data/sources/cities.csv', usecols= ['city'])
-    return {df.to_json(orient = 'table', index=False)}
+    df = pd.read_csv('../data/results/canada_climate_stats/cities.csv', usecols= ['city'])
+    return {df.drop_duplicates().to_json(orient = 'table', index=False)}
