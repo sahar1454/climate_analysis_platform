@@ -17,3 +17,6 @@ pip3 install pandas
 
 # launch the api server
 uvicorn api.main:app --reload --port 8020
+
+# open in the browser
+open frontend/index.html

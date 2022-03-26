@@ -14,6 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    return {"message:": "Welcome, checkout http://127.0.0.1:8020/docs"}
+
 @app.get("/stats/canada/{date}")
 async def root(date: str):
     df = pd.read_csv('data/results/canada_climate_stats/canada.csv', usecols= ['date','mean', 'median'])

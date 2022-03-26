@@ -59,9 +59,19 @@ It includes two tables/file structures:
 - Monitoring and Alerting: We can send some metrics to monitoring and alerting tools such as DataDog and create dashboards and alerts based on those metrics. Or we can take advantage of cloud native solutions such as AWS CloudWatch depending on our stack.
 
 ### Instructions For Running The Application
-**On Docker**:
+You can bring up the application either on Docker or on your local machine directly. I have includede instructions for both. Either of them will install dependencies, run the etl script automatically, run the tests, then it will bring up the API. Once you bring up the application, you can test it either using the API directly (curl or browser - see "Testing the API Directly" section) or you can open up `./frontend/index.html` from the project's directory and test it from the frontend user interface.
 
-**Local Without Docker**:
+**On Docker**:
+In the project directory, run:
+```
+docker-compose up
+```
+To tear down the container, run:
+```
+docker-compose down
+```
+
+**On Local Without Docker**:
 I used python version `3.7.3` to run and test this project. If you need to keep your current version of python (i.e. python 2.x), you can install `venv` and run this project within your virtual python environment:
 
 ```
@@ -69,13 +79,16 @@ $ ./scripts/setup-python-venv.sh
 ```
 This should activate the `venv` in your terminal. If not, run `source venv/bin/activate` manually.
 
-Once you are ready to run the python program, run the following script which installs all the depencies, runs the `etl` script to generate the required data and brings up the api on `http://127.0.0.1:8000/`:
+Once you are ready to run the python program, run the following script which installs all the depencies, runs the `etl` script to generate the required data and brings up the api on `http://127.0.0.1:8020/`:
 
 ```
 $ ./scripts/setup-environment.sh
 ```
+If you are in virtual environment, run `conda deactivate` to exit.
 
 **Testing the API Directly**:
+Swagger documentation: http://127.0.0.1:8020/docs
+
 ```
 # return mean/median for overall Canada for a given date (date format is YYYY-MM-DD)
 $ curl http://127.0.0.1:8020/stats/canada/2021-01-01
@@ -84,8 +97,6 @@ $ curl http://127.0.0.1:8020/stats/cities/2021-01-01
 # return mean/median for a given urban city for a given date (city is case sensitive)
 $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ```
-
-If you are in virtual environment, run `conda deactivate` to exit.
 
 ### Future Steps
 - Instead of sinking the data into csv files, insert them into a database (i.e. PostGres or an OLAP datastore depending on requirements and size of data)

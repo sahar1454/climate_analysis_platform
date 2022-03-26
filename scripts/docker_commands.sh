@@ -1,3 +1,4 @@
+pytest -q /code/etl/test.py
 python /code/etl/etl.py
 mkdir -p /code/data/results/canada_climate_stats/
 cp /code/tmp/canada_climate_stats/*.csv /code/data/results/canada_climate_stats/canada.csv

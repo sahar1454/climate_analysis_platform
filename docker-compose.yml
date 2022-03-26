@@ -1,0 +1,6 @@
+version: '2.2'
+services:
+  weather-app:
+    build: .
+    ports:
+      - "8020:8020"

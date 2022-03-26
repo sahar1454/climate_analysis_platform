@@ -1,7 +1,7 @@
 # 
 FROM openjdk:8
 COPY --from=python:3.7 / / 
-# FROM datamechanics/spark:3.1.2-latest
+# COPY --from=nginx:latest / /
 
 ENV PYSPARK_MAJOR_PYTHON_VERSION=3
 
@@ -16,13 +16,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # 
 COPY ./api /code/api
-
-# 
-# CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8020"]
-
-# 
 COPY ./etl /code/etl
-
+COPY ./frontend /usr/share/nginx/html
 #
 COPY ./data/sources/cities.csv /code/data/sources/cities.csv
 COPY ./data/sources/climate.csv /code/data/sources/climate.csv
