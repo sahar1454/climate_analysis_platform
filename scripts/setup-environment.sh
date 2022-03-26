@@ -14,7 +14,6 @@ pip3 install "fastapi[all]"
 # install panda dependency
 pip3 install pandas
 
-cd api
 
 # launch the api server
-uvicorn main:app --reload
+uvicorn api.main:app --reload --port 8020

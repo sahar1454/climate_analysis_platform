@@ -59,6 +59,9 @@ It includes two tables/file structures:
 - Monitoring and Alerting: We can send some metrics to monitoring and alerting tools such as DataDog and create dashboards and alerts based on those metrics. Or we can take advantage of cloud native solutions such as AWS CloudWatch depending on our stack.
 
 ### Instructions For Running The Application
+**On Docker**:
+
+**Local Without Docker**:
 I used python version `3.7.3` to run and test this project. If you need to keep your current version of python (i.e. python 2.x), you can install `venv` and run this project within your virtual python environment:
 
 ```
@@ -75,11 +78,11 @@ $ ./scripts/setup-environment.sh
 **Testing the API Directly**:
 ```
 # return mean/median for overall Canada for a given date (date format is YYYY-MM-DD)
-$ curl http://127.0.0.1:8000/stats/canada/2021-01-01
+$ curl http://127.0.0.1:8020/stats/canada/2021-01-01
 # return mean/median for all Canadian urban cities for a given date
-$ curl http://127.0.0.1:8000/stats/cities/2021-01-01
+$ curl http://127.0.0.1:8020/stats/cities/2021-01-01
 # return mean/median for a given urban city for a given date (city is case sensitive)
-$ curl http://127.0.0.1:8000/stats/cities/Calgary/2021-01-01
+$ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ```
 
 If you are in virtual environment, run `conda deactivate` to exit.
