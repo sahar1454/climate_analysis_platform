@@ -106,3 +106,4 @@ $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ### Future Steps
 - Instead of sinking the data into csv files, insert them into a database (i.e. PostGres or an OLAP datastore depending on requirements and size of data)
 - Add PySpark specific tests to test the joins
+- Add a container for nginx to serve the static html content and write a script to open the browser once docker containers (nginx and api) are up and running
