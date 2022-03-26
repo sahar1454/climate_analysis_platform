@@ -18,6 +18,7 @@ This project has three main components:
 
 #### Source Data
 **data/sources/cities.csv**: Includes data about Canadian cities (we only care about `city`, `lat`, `lng`, `population`, `proper_population` columns in this project)- Demographic information about Canadian cities and includes the majority of Canada's urban population.
+
 **data/sources/climate.csv**: Includes data about Canadian weather stations (we only care about `lat`, `lng`, `mean_temperature`, `min_temperature`, `max_temperature` in this project) - climate information for a few weeks in early 2021 collected at weather stations around Canada.
 
 #### ETL Process And Assumptions
@@ -46,11 +47,15 @@ It includes two tables/file structures:
 ![alt text](https://github.com/sahar1364/climate_analysis_platform/blob/master/images/erm.png)
 
 #### Important Files In This Project
-**etl/etl.py:** Fetches and transforms data from cvs files and inserts them into two final csv file in `data/results/canada_climate_stats` directory
-**etl/test.py**: The test file that does a couple of unit tests (it is not comprehensive but just a placeholder to add more tests in future)
-**api/main.py**: Uses FastApi library to define the endpoints for getting the calculated data from csv files
-**scripts/setup-environment.sh**: Installs all dependencies, run the etl script and the tests, launches the API endpoints
-**scripts/setup-python-venv.sh**: Installs python virtual environment in case it is needed
+**etl/etl.py:** Fetches and transforms data from cvs files and inserts them into two final csv file in `data/results/canada_climate_stats` directory.
+
+**etl/test.py**: The test file that does a couple of unit tests (it is not comprehensive but just a placeholder to add more tests in future).
+
+**api/main.py**: Uses FastApi library to define the endpoints for getting the calculated data from csv files.
+
+**scripts/setup-environment.sh**: Installs all dependencies, run the etl script and the tests, launches the API endpoints.
+
+**scripts/setup-python-venv.sh**: Installs python virtual environment in case it is needed.
 
 ### Operational Excelence in ETL Pipeline
 - Performance and Scalability: The etl script in written in PySpark which enables us to run it on a distributed environment and take advantage of Spark's offerings in terms of Scalability and Performance. For instance, if we use AWS as the cloud provider, we can run the job on an EMR cluster which will distribute it on EC2 instances (nodes) of the EMR and will enhance the performance and scalability. If the data size increases, we can easily scale up the EMR cluster or we can enable EMR's auto-scaling (Elastic Scaling). If the size of data increases, we need to move the result dataset out of csv files and into a proper OLAP datastore (such as Pinot, Druid, Rockset depending on the use case and requirements)
@@ -59,7 +64,7 @@ It includes two tables/file structures:
 - Monitoring and Alerting: We can send some metrics to monitoring and alerting tools such as DataDog and create dashboards and alerts based on those metrics. Or we can take advantage of cloud native solutions such as AWS CloudWatch depending on our stack.
 
 ### Instructions For Running The Application
-You can bring up the application either on Docker or on your local machine directly. I have includede instructions for both. Either of them will install dependencies, run the etl script automatically, run the tests, then it will bring up the API. Once you bring up the application, you can test it either using the API directly (curl or browser - see "Testing the API Directly" section) or you can open up `./frontend/index.html` from the project's directory and test it from the frontend user interface.
+You can bring up the application either on Docker or on your local machine directly. I have included instructions for both. Either of them will install dependencies, run the etl script automatically, run the tests, then it will bring up the API. Once you bring up the application, you can test it either using the API directly (curl or browser - see "Testing the API Directly" section) or you can open up `./frontend/index.html` from the project's directory and test it from the frontend user interface.
 
 **On Docker**:
 In the project directory, run:
@@ -101,4 +106,3 @@ $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ### Future Steps
 - Instead of sinking the data into csv files, insert them into a database (i.e. PostGres or an OLAP datastore depending on requirements and size of data)
 - Add PySpark specific tests to test the joins
-- Containarize the app
