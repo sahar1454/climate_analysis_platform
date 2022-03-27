@@ -35,7 +35,7 @@ The ETL process calculates two different stats:
 - Calculates the mean and median temperature per urban city per day (The result data gets saved into `data/results/canada_climate_stats/cities.csv`). 
 
 #### Final Database Schema
-Based on the requirements, I have decided to do the pre-aggregations and calculate the stats prior to inserting it into the new files (analytics datastore). The data model will change if we want a more generic-purpose analytics datastore for doing adhoc reports/analytics (we can design a star schema instead if the end users are comfortable using SQL to run their reports with fact tables and dimensions).
+Based on the requirements, I have decided to do the pre-aggregations and calculate the stats prior to inserting it into the new files (analytics datastore). This will help with improving query latency but decreases flexibility. The data model will change if we want a more generic-purpose analytics datastore for doing adhoc reports/analytics (we can design a star schema instead if the end users are comfortable using SQL to run their reports with fact tables and dimensions).
 
 The data model for this project is designed based on two assumptions/use cases:
 - We need to query the median/mean temperature across all canada for a given date
@@ -103,8 +103,10 @@ Swagger documentation: http://127.0.0.1:8020/docs
 ```
 # return mean/median for overall Canada for a given date (date format is YYYY-MM-DD)
 $ curl http://127.0.0.1:8020/stats/canada/2021-01-01
+
 # return mean/median for all Canadian urban cities for a given date
 $ curl http://127.0.0.1:8020/stats/cities/2021-01-01
+
 # return mean/median for a given urban city for a given date (city is case sensitive)
 $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ```
@@ -112,4 +114,3 @@ $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ### Future Steps
 - Instead of sinking the data into csv files, insert them into a database (i.e. PostGres or an OLAP datastore depending on requirements and size of data)
 - Add PySpark specific tests to test the joins
-- Add a container for nginx to serve the static html content and write a script to open the browser once docker containers (nginx and api) are up and running
