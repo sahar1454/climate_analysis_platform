@@ -67,13 +67,19 @@ It includes two tables/file structures:
 You can bring up the application either on Docker or on your local machine directly. I have included instructions for both. Either of them will install dependencies, run the etl script automatically, run the tests, then it will bring up the API. Once you bring up the application, you can test it either using the API directly (curl or browser - see "Testing the API Directly" section) or you can open up `./frontend/index.html` from the project's directory and test it from the frontend user interface.
 
 **On Docker**:
-In the project directory, run:
+Run:
 ```
-docker-compose up
+$ ./scripts/start_docker.sh
+```
+This will run etl script, brings up the APIs on port 8020 and then launches the frontend in the browser. You can still test the API directly by using curl (refer to the "Testing the API Directly" section). It will take a couple of minutes for everything to run and launch.
+
+Alternatively, you can manually bring up docker and manually bring up frontend by clicking on `./frontend/index.html`. In order to do this, in the project directory, run:
+```
+$ docker-compose up
 ```
 To tear down the container, run:
 ```
-docker-compose down
+$ docker-compose down
 ```
 
 **On Local Without Docker**:

@@ -1,5 +1,5 @@
 var DETAIL_KEYS = ["mean", "median"];
-var BASE_URL = "http://127.0.0.1:8020"
+var BASE_URL = "http://localhost:8020"
 var GET_CITIES_URL = BASE_URL + "/cities";
 var GET_CITY_DETAILS_URL = BASE_URL + "/stats/cities/";
 var GET_COUNTRY_DETAILS_URL = BASE_URL + "/stats/canada/";
