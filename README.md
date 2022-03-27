@@ -114,3 +114,4 @@ $ curl http://127.0.0.1:8020/stats/cities/Calgary/2021-01-01
 ### Future Steps
 - Instead of sinking the data into csv files, insert them into a database (i.e. PostGres or an OLAP datastore depending on requirements and size of data)
 - Add PySpark specific tests to test the joins
+- Use cloud native solutions instead. Use terraform to setup the infrastrucute for API Gateways, Lambda (to run the etl), and DynamoDB on AWS for instance.
