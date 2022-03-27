@@ -4,3 +4,11 @@ services:
     build: .
     ports:
       - "8020:8020"
+  nginx:
+    build:
+      context: ./
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - weather-app
